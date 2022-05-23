@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+
+<head>
+    <title>Drug-Drug Interactions Tool</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+</head>
+
+<body>
+    <div id="app">
+        <h1 class="text-center my-5">Drug-Drug Interactions Tool</h1>
+        <h5 class="text-center">Added Drugs:&nbsp</h5>
+        <p id="drugCollection" class="text-center">No drugs added yet</p>
+        <div class="container">
+            <div class="form-row">
+                <div class="input-group input-group-lg col-md-3 mx-auto">
+                    <input class="form-control" type="text" placeholder="Enter medication here" id="txtMedication" onkeydown="keypress()">
+                </div>
+            </div>
+            <div class="col text-center">
+                <button type="button" class="btn btn-primary my-2" onclick="addMedication()" >Add drug</button>
+            </div>
+            <div class="col text-center">
+                <button type="button" class="btn btn-primary my-2" onclick="submitMediactions()">See the Result</button>
+            </div>
+        </div>
+
+        {% if interactions is defined %}
+        <div class="col text-center">
+            <h2 class="mt-5">Results:</h2>
+            {% if interactions|length != 0 %}
+            {% for interaction in interactions %}
+            <hr>
+            <p><b>{{interaction["object"]}}</b> and <b>{{interaction["precipitant"]}}</b>{% if interaction["description"]|length != 0 %}: {{interaction["description"]}}{% endif %}</p>
+            {% endfor %}
+            {% else %}
+            <p>No Interactions could be found.</p>
+            {% endif %}
+
+        </div>
+        {% endif %}
+    
+        <div></div>
+      </div>
+</body>
+
+<script>
+    
+    var medications = []
+
+    function keypress(){
+        if(event.key === 'Enter'){
+            addMedication()
+        }
+    }
+    function addMedication(){
+        textBoxVal = document.getElementById('txtMedication').value;
+        if(textBoxVal != ""){
+            medications.push(textBoxVal);
+            document.getElementById('drugCollection').innerHTML = medications;
+            document.getElementById('txtMedication').value = ""
+            console.log("Medication added:", textBoxVal);
+        }
+    }
+    function submitMediactions(){
+        window.location.href = "/?medications=" + medications.toString();
+    }
+  </script>
+    
+</html>

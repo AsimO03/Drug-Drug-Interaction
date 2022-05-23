@@ -1,24 +1,44 @@
 # drug-drug-interaction
 
-## Project setup
+This project needs a CSV that lists drug interactions as a database.  
+You can download the one used in development here:  
+https://samwald.info/res/CombinedDatasetConservative.csv.zip  
+Please download it and place it into the root of the project.
+
+## Install required package(s)
 ```
-npm install
+pip install -r requirements.txt
 ```
 
-### Compiles and hot-reloads for development
+## Configure the environment and start the Flask app
+
+Bash:
 ```
-npm run serve
+    export FLASK_APP=hello
+    export FLASK_ENV=development (optional)
+    flask run
+```
+CMD:
+```
+    set FLASK_APP=hello
+    set FLASK_ENV=development (optional)
+    flask run
+```
+Powershell:
+```
+    $env:FLASK_APP = "hello"
+    $env:FLASK_ENV = "development" (optional)
+    flask run
 ```
 
-### Compiles and minifies for production
+
+## Docker
+Build the Image:
 ```
-npm run build
+docker build --tag ddi .
 ```
 
-### Lints and fixes files
+Run the Image
 ```
-npm run lint
+docker run -d -p 5000:5000 ddi
 ```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).

@@ -7,7 +7,7 @@ app = Flask(__name__)
 dataController = DataController("CombinedDatasetConservativeTWOSIDES.csv")
 
 @app.route("/")
-def hello_world():
+def index():
     args = request.args
 
     # if we have medications as argument in the get URL, it's a "See Results" request

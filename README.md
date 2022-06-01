@@ -14,19 +14,19 @@ pip install -r requirements.txt
 
 Bash:
 ```
-    export FLASK_APP=hello
+    export FLASK_APP=app
     export FLASK_ENV=development (optional)
     flask run
 ```
 CMD:
 ```
-    set FLASK_APP=hello
+    set FLASK_APP=app
     set FLASK_ENV=development (optional)
     flask run
 ```
 Powershell:
 ```
-    $env:FLASK_APP = "hello"
+    $env:FLASK_APP = "app"
     $env:FLASK_ENV = "development" (optional)
     flask run
 ```
